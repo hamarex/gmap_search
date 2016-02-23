@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>Google Maps API ver 3 Sample</title>
+<link rel="stylesheet" href="css/main.css" type="text/css" media="all">
+<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+<script type="text/javascript" src="js/draw.js"></script>
+</head>
+<body>
+<div id="gmap"></div>
+<canvas id="myCanvas" width="640" height="500"></canvas>
+<div id="result">---</div>
+<script type="text/javascript">
+
+var map = new google.maps.Map(
+  document.getElementById("gmap"),{
+    zoom : 16,
+    center : new google.maps.LatLng(35.689160610317174, 139.70083951950073),
+    mapTypeId : google.maps.MapTypeId.ROADMAP
+  }
+);
+
+var points = [], myPath = new google.maps.Polyline();
+google.maps.event.addListener(map, "click", function(evt) {
+  var pos = evt.latLng;
+  var lat = pos.lat();
+  var lng = pos.lng();
+  document.getElementById("result").innerHTML = "緯度："+lat+"、経度："+lng;
+  points.push(new google.maps.LatLng(lat, lng));
+  myPath.setPath(points);
+  myPath.setMap(map);
+});
+//
+var drawFlag = false;
+var oldX = 0;
+var oldY = 0;
+window.addEventListener("load", function(){
+  var can = document.getElementById("myCanvas");
+  can.addEventListener("mousemove", draw, true);
+  can.addEventListener("mousedown", function(e){
+    drawFlag = true;
+    oldX = e.clientX;
+    oldY = e.clientY;
+  }, false);
+  can.addEventListener("mouseup", function(){
+    drawFlag = false;
+  }, false);
+}, true);
+// 描画
+function draw(e){
+  if (!drawFlag) return;
+  var x = e.clientX;
+  var y = e.clientY;
+  var can = document.getElementById("myCanvas");
+  var context = can.getContext("2d");
+  context.strokeStyle = "rgba(255,0,0,0.5)";	// 赤色
+  context.lineWidth = 2;
+  context.beginPath();
+  context.moveTo(oldX, oldY);
+  context.lineTo(x, y);
+  context.stroke();
+  context.closePath();
+  oldX = x;
+  oldY = y;
+  }
+</script>
+</body>
+</html>

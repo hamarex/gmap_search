@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta keyword="">
+    <meta discription="">
+    <link rel=stylesheet href="style.css" />
+    <title>Google Maps</title>
+  </head>
+
+  <body>
+    <div id="wrapper">
+      <header>header</header>
+      <p>geo_encode(名称を入力、または住所など):<input type="text" id="address" value=-> <input type ="button" value="move" onclick="moveMap();"></p>
+      <p>範囲をクリックで描画したらsearchボタンを押して検索<p>
+        <p>検索オプション(たとえば時給):<select name="price" id="price">
+          <option value=100>100</option>
+          <option value=500>500</option>
+          <option value=600>600</option>
+          <option value=700>700</option>
+          <option value=800>800</option>
+          <option value=900>900</option>
+          <option value=1000>1000</option>
+          <option value=1100>1100</option>
+          <option value=1200>1200</option>
+          <option value=1300>1300</option>
+          <option value=1400>1400</option>
+        </select>
+      </p>
+      <center>
+      <p><input type="button" id="ajax-button" value="search" /> <br />
+      </center>
+
+      <main>
+        <div id="gmap" style="width:80%; height:350px;"></div>
+      </main>
+
+      <footer>footer</footer>
+    </div>
+
+    <p><input type="button" value="配列の中身を全て出力" onclick="Output()"></p>
+    <p><textarea id="outputarea" style="width:200px; height:80px;"></textarea></p>
+    <input type="button" value="配列削除" onclick="deleteLine()" />
+<!-- js -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maps.google.com/maps/api/js?sensor=false"></script>
+<script src="infobox.js"></script>
+<script src="maps3.js"></script>
+<!-- /js -->
+</body>
+</html>

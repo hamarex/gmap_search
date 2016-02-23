@@ -1,0 +1,20 @@
+body {
+	margin:0;
+	padding:0;
+}
+#gmap {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width : 640px;
+	height: 500px;	
+}
+
+#myCanvas {
+	position: relative;
+	top: 0px;
+	left: 0px;
+	width : 640px;
+	height: 500px;	
+
+}
